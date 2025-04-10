@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eu # Increase bash strictness
+set -exu # Increase bash strictness
 shopt -s globstar # Enable globstar
 
 if [[ -n "${GITHUB_WORKSPACE}" ]]; then
