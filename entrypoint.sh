@@ -9,7 +9,7 @@ fi
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 export REVIEWDOG_VERSION=v0.23.3
-export RD_URL="https://github.com/reviewdog/reviewdog/releases/download/${REVIEWDOG_VERSION}/reviewdog_${REVIEWDOG_VERSION}_Linux_x86_64.tar.gz"
+export RD_URL="https://github.com/reviewdog/reviewdog/releases/download/v0.20.3/reviewdog_0.20.3_Linux_x86_64.tar.gz"
 RD_CHECKSUM=2c634dbc00bd4a86e4d4c47029d2af9185fab06643a9df0ae10e7c4d644781b6
 
 echo "[action-pylint] Installing reviewdog ${REVIEWDOG_VERSION}..."
