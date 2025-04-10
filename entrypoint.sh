@@ -8,10 +8,17 @@ fi
 
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
-export REVIEWDOG_VERSION=v0.14.1
+export REVIEWDOG_VERSION=v0.23.3
+export RD_URL="https://github.com/reviewdog/reviewdog/releases/download/${REVIEWDOG_VERSION}/reviewdog_${REVIEWDOG_VERSION}_Linux_x86_64.tar.gz"
+RD_CHECKSUM=2c634dbc00bd4a86e4d4c47029d2af9185fab06643a9df0ae10e7c4d644781b6
 
-echo "[action-pylint] Installing reviewdog..."
-wget -O - -q https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b /tmp "${REVIEWDOG_VERSION}"
+echo "[action-pylint] Installing reviewdog ${REVIEWDOG_VERSION}..."
+#wget -O - -q https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b /tmp "${REVIEWDOG_VERSION}"
+curl -sSL -o /tmp/reviewdog.tar.gz "${RD_URL}"
+echo "${RD_CHECKSUM}  /tmp/reviewdog.tar.gz" | sha256sum -c -
+tar -xzf /tmp/reviewdog.tar.gz -C /tmp
+install /tmp/reviewdog /usr/local/bin/
+chmod 755 /usr/local/bin/reviewdog
 
 if [[ "$(which pylint)" == "" ]]; then
   echo "[action-pylint] Installing pylint package..."
